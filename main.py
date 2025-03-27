@@ -9,6 +9,7 @@ from config import (
     HELLO_LIST,
     INFO_LIST,
     MISUNDERSTANDING_STICKERS,
+    QUOTES,
 )
 
 
@@ -30,6 +31,12 @@ def start(message):
         "\nдля игр: играть(орел или решка)"
         "\n /predict ну там увидишь",
     )
+
+
+@bot.message_handler(commands=["quote"])
+def quote(message):
+    print("quote called")
+    bot.send_message(message.chat.id, random.choice(QUOTES))
 
 
 @bot.message_handler(commands=["predict"])
@@ -91,3 +98,5 @@ print("bot starting...")
 bot.polling(none_stop=True, interval=0)
 
 print("bot stopped")
+
+# TODO: deploy the bot
